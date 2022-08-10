@@ -1,9 +1,79 @@
-<div class=" w-50 m-auto my-5">
-   
-  <h1>Split Files Into Folders</h1>
-  
-  <mat-form-field appearance="outline">
-     <mat-label>Folder Path</mat-label>
-     <input cdkFocusInitial matInput required>
-  </mat-form-field>
+<div class="row m-2">
+  <div class=" col-md-9 m-auto my-5">
+
+    <h1>Files Splitter</h1>
+    <p>This will allow you to split a lot of files to chunks each chunk in a folder i.e(split big folder into
+      subfolders). Base on your configuration. Path is the absolute path of the folder that contains the files.
+      Max number of files is how many files each subfolder should contains.
+      Size of subfolder is approximate number that determine each subfolder size.
+      Note: It's approximate because files are vary in size! So, when the program add each file it will check if the
+      subfolder exceeds the size then it will stop.
+    </p>
+    <p>Note: You should determine max number of files or size of subfolder or both.
+      You can't leave them empty. If you determine both then the first one reach will apply.
+    </p>
+    <p>
+      Example: You have a folder that contains a series of TV show with hundreds of video files. Select that folder
+      and choose your prefer configuration. Then run the program and enjoy 😊
+    </p>
+    <br>  <mat-divider></mat-divider><br>
+    <div class="row">
+
+      <button mat-flat-button (click)="selectDirectory()" class="col-md-3 my-2" style="height:fit-content"
+        color="primary">
+        <mat-icon>folder</mat-icon>&nbsp;<span>Choose Directory</span>
+      </button>
+      <mat-form-field class="col-md-9" appearance="outline">
+        <mat-label>Folder Path</mat-label>
+        <input placeholder="Path" [(ngModel)]="path" matInput required>
+      </mat-form-field>
+    </div><br>
+    <div class="row">
+      <mat-form-field class="col-md-6" appearance="outline">
+        <mat-label>Max Number of Files in Each Subfolder</mat-label>
+        <input type="number" placeholder="Undefined" [(ngModel)]="subFiles" matInput
+          oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+      </mat-form-field>
+    </div><br>
+    <div class="row">
+      <mat-form-field class="col-md-6" appearance="outline">
+        <mat-label>Size of Subfolder</mat-label>
+        <input type="number" placeholder="Undefined" [(ngModel)]="subSize" matInput
+          oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+        <mat-hint>Note: this is approximate number</mat-hint>
+        <span matSuffix>{{subSizeType}}</span>
+      </mat-form-field>
+      <div class="col-md-6">
+
+        <mat-button-toggle-group [(ngModel)]="subSizeType" appearance="legacy" name="fontStyle" class="my-2"
+          style="height:fit-content">
+          <mat-button-toggle value="GB">GB</mat-button-toggle>
+          <mat-button-toggle value="MB">MB</mat-button-toggle>
+          <mat-button-toggle value="KB">KB</mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+    </div><br>
+    <div class="row">
+      
+        <div class="col-md-6 d-flex">
+          
+          <h2 class=" my-2">
+            Order&nbsp;By:
+          </h2>
+          <div class="mx-4">
+            
+            <mat-button-toggle-group [(ngModel)]="orderBy" appearance="legacy" name="fontStyle" class="my-2"
+            style="height:fit-content">
+            <mat-button-toggle value="name">Name</mat-button-toggle>
+            <mat-button-toggle value="name desc">Name (desc)</mat-button-toggle>
+            <mat-button-toggle value="random">Random</mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+      </div>
+    </div>
+
+    <div class="my-5 d-flex justify-content-center ">
+      <button mat-raised-button [disabled]="loading" color="primary" (click)="run()">Go</button>
+    </div>
+  </div>
 </div>

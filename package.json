@@ -6,33 +6,32 @@
     "name": "Ahmad Alkaf",
     "email": "ahmad.medoo.700@gmail.com"
   },
-  "description": "This is an example of an Electron App build with Angular framework and packaged with Electron-Forge. Made to be copied offline to build any app with existed modules and packages.",
+  "description": "This will allow you to split a lot of files to chunks each chunk in a folder i.e(split big folder into subfolders). Base on your configuration. Path is the absolute path of the folder that contains the files. Max number of files is how many files each subfolder should contains. Size of subfolder is approximate number that determine each subfolder size.",
   
   "scripts": {
     "serve": "nodemon --watch ./electron/*.ts -e ts --exec \"tsc ./electron/main.ts ./electron/preload.ts --outDir electronJS & electron .\"",
-    "serveRenderer": "nodemon --watch ./destination/*.js ./src/** ./electron/*.ts -e ts js html scss --exec \"ng build & tsc ./electron/main.ts ./electron/preload.ts --outDir electronJS & electron .\"",
+    "serveRenderer": "nodemon --watch ./destination/*.js ./src/** ./src/**/** ./electron/*.ts -e ts js html scss --exec \"npm run buildRenderer\"",
     "build": "tsc ./electron/main.ts ./electron/preload.ts --outDir electronJS & electron .",
     "buildRenderer": "ng build & tsc ./electron/main.ts ./electron/preload.ts --outDir electronJS & electron .",
-    "test": "ng test",
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
     "installer": "electron-builder"
   },
   "build": {
-    "appId": "com.files-splitter.app",
+    "appId": "com.files-splitter-into-subfolders.app",
     "productName": "Files Splitter",
     "win": {
       "target": [
         "nsis"
       ],
-      "icon": "./src/website.ico"
+      "icon": "./src/favicon.ico"
     },
     "nsis": {
       "oneClick": false,
-      "installerIcon": "./src/website.ico",
-      "uninstallerIcon": "./src/website.ico",
-      "uninstallDisplayName": "Uninstall split-files-into-folders",
+      "installerIcon": "./src/favicon.ico",
+      "uninstallerIcon": "./src/favicon.ico",
+      "uninstallDisplayName": "Uninstall Files Splitter",
       "license": "./README.md",
       "allowToChangeInstallationDirectory": true
     }

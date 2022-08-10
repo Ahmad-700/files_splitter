@@ -9,6 +9,7 @@
 /electronJS
 /src/assets/bootstrap.css
 /src/assets/jquery-3.6.0.js
+
 # Node
 /node_modules
 npm-debug.log

@@ -1,0 +1,11 @@
+<div style="width:400px;">
+
+   <h1 mat-dialog-title [style]="'color:'+data.title.color">{{data.title.text}}</h1>
+   <div mat-dialog-content>
+      <p>{{data.content}}</p>
+
+   </div>
+   <div mat-dialog-actions>
+      <button class="m-auto" mat-button [mat-dialog-close]="" cdkFocusInitial>Ok</button>
+   </div>
+</div>
